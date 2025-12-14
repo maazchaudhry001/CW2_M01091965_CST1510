@@ -1,0 +1,20 @@
+class User:
+    """Model representing a system user within the Multi-Domain Intelligence Platform."""
+
+    def __init__(self, username: str, password_hash: str, role: str):
+        self.__username = username
+        self.__password_hash = password_hash
+        self.__role = role
+
+    def username(self) -> str:
+        return self.__username
+
+    def role(self) -> str:
+        return self.__role
+
+    def check_password(self, password: str, password_hasher) -> bool:
+        """Validates a plain-text password against the stored hashed password."""
+        return password_hasher.check_password(password, self.__password_hash)
+
+    def __str__(self) -> str:
+        return f"User(username={self.__username}, role={self.__role})"
